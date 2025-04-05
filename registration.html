@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alumni Association - Alumni Registration</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+   body.dark-theme {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+/* Glassy surfaces */
+.glassy {
+  background: rgba(30, 30, 46, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 230, 230, 0.1);
+  border: 1px solid rgba(0, 230, 230, 0.15);
+}
+
+/* Navbar */
+.navbar {
+  padding: 1rem 2rem;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 230, 230, 0.2);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00e6e6;
+  text-shadow: 0 0 8px #00e6e6;
+}
+
+/* Menu links */
+.menu a {
+  color: #00e6e6;
+  text-decoration: none;
+  margin: 0 1rem;
+  transition: 0.3s;
+}
+
+.menu a:hover,
+.menu a.active {
+  color: #ffffff;
+  text-shadow: 0 0 10px #00e6e6;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 0 0 15px rgba(0, 230, 230, 0.15);
+}
+
+/* Profile image */
+.profile img {
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 0 10px #00e6e6;
+}
+
+/* Main layout */
+.main-content {
+  display: flex;
+  padding: 2rem;
+}
+
+.main-section {
+  flex-grow: 1;
+  padding-left: 2rem;
+}
+
+/* Cards */
+.card {
+  padding: 2rem;
+  margin-top: 1rem;
+  box-shadow: 0 0 20px rgba(0, 230, 230, 0.15);
+}
+
+/* Form styles */
+form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+form input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  background-color: rgba(30, 30, 46, 0.8);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 230, 230, 0.1) inset;
+}
+
+/* Neon button */
+.neon-button {
+  margin-top: 1.5rem;
+  padding: 0.7rem 2rem;
+  border: none;
+  border-radius: 6px;
+  background: #00e6e6;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 10px #00e6e6, 0 0 20px #00e6e6 inset;
+}
+
+.neon-button:hover {
+  background: #00ffff;
+  box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+  color: #000;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  box-shadow: 0 -4px 20px rgba(0, 230, 230, 0.1);
+}
+
+
+  </style>
+</head>
+<body class="dark-theme">
+  <header class="navbar glassy">
+    <div class="logo">Alumni Association</div>
+    <div class="menu-toggle" id="menu-toggle"><i class='bx bx-menu'></i></div>
+    <nav class="menu" id="menu">
+      <a href="index.html">Home</a>
+      <a href="profile.html">Profile</a>
+      <a href="messages.html">Messages</a>
+      <a href="notifications.html">Notifications</a>
+      <a href="settings.html">Settings</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <aside class="sidebar glassy">
+      <div class="profile">
+        <img src="john.jpeg" alt="Profile Picture">
+        <h3>john</h3>
+        <p>Class of 2027</p>
+      </div>
+      <nav class="menu">
+        <a href="registration.html" class="active"><i class='bx bxs-user-plus'></i> Alumni Registration</a>
+        <a href="donation.html"><i class='bx bxs-donate-heart'></i> Donation Portal</a>
+        <a href="networking.html"><i class='bx bxs-network-chart'></i> Networking Hub</a>
+        <a href="jobs.html"><i class='bx bxs-briefcase'></i> Job Portal</a>
+        <a href="directory.html"><i class='bx bxs-book-content'></i> Alumni Directory</a>
+        <a href="success.html"><i class='bx bxs-trophy'></i> Success Story Tracking</a>
+        <a href="events.html"><i class='bx bxs-calendar-event'></i> Events and Reunions</a>
+        <a href="feedback.html"><i class='bx bxs-chat'></i> Feedback and Surveys</a>
+      </nav>
+    </aside>
+
+    <section class="main-section">
+      <article class="card glassy">
+        <h2>Alumni Registration</h2>
+        <p>Register as an alumni to stay connected with your alma mater. Please fill out the form below to join the Alumni Association.</p>
+        <form>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="year">Graduation Year:</label>
+          <input type="text" id="year" name="year" required>
+
+          <button type="submit" class="neon-button">Register</button>
+        </form>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer glassy">
+    <p>&copy; 2024 Alumni Association. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+      document.getElementById('menu').classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

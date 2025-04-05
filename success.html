@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Association - Success Story Tracking</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Global Styles */
+        body {
+            background: linear-gradient(135deg, #1e1e2e, #121212);
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            height: 100vh;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: rgba(0, 230, 230, 0.1);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+            z-index: 10;
+        }
+
+        .navbar .logo {
+            color: #00e6e6;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar .menu {
+            display: flex;
+        }
+
+        .navbar .menu a {
+            color: #bbb;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        .navbar .menu a:hover {
+            color: #00e6e6;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: #1e1e2e;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+            z-index: 5;
+        }
+
+        .sidebar .profile {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .sidebar .profile h3 {
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .sidebar .profile p {
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        .sidebar .menu a {
+            color: #bbb;
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .sidebar .menu a:hover {
+            background-color: #333;
+            color: #00e6e6;
+        }
+
+        .sidebar .menu a.active {
+            background-color: #444;
+            color: #00e6e6;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            margin-left: 270px;
+            padding: 40px;
+            width: calc(100% - 270px);
+            overflow-y: auto;
+            padding-top: 80px; /* To make space for navbar */
+        }
+
+        .main-section {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .main-section .card {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 230, 230, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .main-section .card h2 {
+            font-size: 2rem;
+            color: #00e6e6;
+            margin-bottom: 10px;
+        }
+
+        .main-section .card p {
+            font-size: 16px;
+            color: #bbb;
+        }
+
+        /* Success Story Section */
+        .success-stories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between; /* Align horizontally */
+        }
+
+        .success-stories .story-card {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 230, 230, 0.5);
+            width: 32%; /* Adjust width to fit 3 items in a row */
+            transition: 0.3s ease;
+        }
+
+        .success-stories .story-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .success-stories .story-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .success-stories .story-text {
+            padding: 15px;
+        }
+
+        .success-stories .story-text .short-text {
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .success-stories .story-text .full-text {
+            font-size: 14px;
+            color: #bbb;
+            display: none;
+        }
+
+        .success-stories .story-text .read-more {
+            font-size: 14px;
+            color: #00e6e6;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .success-stories .story-text .read-more:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #1e1e2e;
+            padding: 15px;
+            text-align: center;
+            color: #bbb;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .main-content {
+                margin-left: 220px;
+                width: calc(100% - 220px);
+            }
+
+            .success-stories .story-card {
+                width: 45%; /* Change to 2 items per row */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .success-stories .story-card {
+                width: 100%; /* Stack all items in one column */
+            }
+
+            .navbar .menu {
+                display: none; /* Hide menu on small screens */
+            }
+
+            .menu-toggle {
+                display: block; /* Show the hamburger icon on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">Alumni Association</div>
+        <div class="menu-toggle" id="menu-toggle">
+            <i class='bx bx-menu'></i>
+        </div>
+        <nav class="menu" id="menu">
+            <a href="index.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="messages.html">Messages</a>
+            <a href="notifications.html">Notifications</a>
+            <a href="settings.html">Settings</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <aside class="sidebar">
+            <div class="profile">
+                <img src="john.jpeg" alt="Profile Picture">
+                <h3>John</h3>
+                <p>Class of 2027</p>
+            </div>
+            <nav class="menu">
+                <a href="registration.html"><i class='bx bxs-user-plus'></i> Alumni Registration</a>
+                <a href="donation.html"><i class='bx bxs-donate-heart'></i> Donation Portal</a>
+                <a href="networking.html"><i class='bx bxs-network-chart'></i> Networking Hub</a>
+                <a href="jobs.html"><i class='bx bxs-briefcase'></i> Job Portal</a>
+                <a href="directory.html"><i class='bx bxs-book-content'></i> Alumni Directory</a>
+                <a href="success.html" class="active"><i class='bx bxs-trophy'></i> Success Story Tracking</a>
+                <a href="events.html"><i class='bx bxs-calendar-event'></i> Events and Reunions</a>
+                <a href="feedback.html"><i class='bx bxs-chat'></i> Feedback and Surveys</a>
+            </nav>
+        </aside>
+
+        <section class="main-section">
+            <article class="card">
+                <h2>Success Story Tracking</h2>
+                <p>Share and track the success stories of our alumni community. Submit your achievements or read about others here.</p>
+            </article>
+
+            <section class="success-stories">
+                <div class="story-card">
+                    <div class="story-text">
+                        <p class="short-text">My Achievement of getting 51 LPA at Microsoft</p>
+                        <p class="full-text">"Excited to share that I’ve received a placement offer from Microsoft with a 51 LPA package! This is a huge milestone for me, and I’m incredibly grateful for the support and opportunities that have come my way. Looking forward to starting this new chapter and making the most of this amazing opportunity!"</p>
+                        <a href="#" class="read-more">Read more</a>
+                    </div>
+                    <img src="https://1drv.ms/i/c/7a4da36efdecb0c8/IQN9ZCdyEYNpTJjLR-mi3YlmASCj3p0rg4HlwdmzQGA50ec?width=1080&height=1080" alt="Success Story Image" class="story-image">
+                </div>
+
+                <div class="story-card">
+                    <div class="story-text">
+                        <p class="short-text">A Remarkable PPO Offer of 34.5 LPA</p>
+                        <p class="full-text">“I’m thrilled to announce that I’ve received a placement offer from PayPal with a 34.5 LPA package! This is a significant milestone in my career, and I’m thankful for all the support and encouragement I’ve received along the way. Excited to embark on this new journey with such an innovative company!”</p>
+                        <a href="#" class="read-more">Read more</a>
+                    </div>
+                    <img src="https://1drv.ms/i/c/7a4da36efdecb0c8/IQM0DfyjDmvKRZbMFyr_pv0QAe5qXtBKeZk_HnHw0Sj3CMw?width=1024" alt="Success Story Image" class="story-image">
+                </div>
+
+                <div class="story-card">
+                    <div class="story-text">
+                        <p class="short-text">Double Placement Success and an internship at PayPal</p>
+                        <p class="full-text">“I’m thrilled to announce that I and my friend have received a placement offer from PayPal with a 34.2 LPA package! This is a significant milestone in my career, and I’m thankful for all the support and encouragement I’ve received along the way. Excited to embark on this new journey with such an innovative company!”</p>
+                        <a href="#" class="read-more">Read more</a>
+                    </div>
+                    <img src="https://1drv.ms/i/c/7a4da36efdecb0c8/IQNjrEPL4p44TamR7DehhmV9AXQhTdHchXzvCl0evOBF6zU?width=1024" alt="Success Story Image" class="story-image">
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Alumni Association. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('menu').classList.toggle('active');
+        });
+
+        document.querySelectorAll('.read-more').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                const fullText = this.previousElementSibling;
+                fullText.style.display = 'inline';
+                this.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

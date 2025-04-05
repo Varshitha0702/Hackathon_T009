@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e1e2e, #121212);
+            color: #100808;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .wrapper {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 0 15px rgba(0, 230, 230, 0.5);
+            width: 400px;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #00e6e6;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        /* Unified style for input and select */
+        .input-box input, .input-box select {
+            width: 100%;
+            height: 50px;
+            background: transparent;
+            color: #fff;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 40px;
+            outline: none;
+            padding-left: 40px;
+            box-sizing: border-box;  /* Ensures padding and border don't affect the width */
+        }
+
+        .input-box select {
+            padding-right: 20px; /* Ensures equal padding without the dropdown icon */
+        }
+
+        .input-box input:focus, .input-box select:focus {
+            border-color: #00e6e6;
+        }
+
+        .input-box i {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            color: #00e6e6;
+        }
+
+        .remember-forget {
+            margin-bottom: 20px;
+        }
+
+        .remember-forget input {
+            color: #fff;
+        }
+
+        .remember-forget label {
+            color: #fff;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px 20px;
+            background-color: #00e6e6;
+            color: #121212;
+            border: none;
+            border-radius: 40px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 230, 230, 0.5);
+        }
+
+        .btn:hover {
+            background-color: #009999;
+        }
+
+        .register-link {
+            margin-top: 20px;
+        }
+
+        .register-link a {
+            color: #00e6e6;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .register-link p {
+            color: #fff;
+        }
+
+        #message {
+            color: red;
+            text-align: center;
+        }
+
+        /* Updated styling for the Year Dropdown */
+        #year option {
+            color: #000; /* Change color of year options to black */
+        }
+
+        /* Updated styling for Branch Dropdown */
+        select {
+            color: black;  /* Set color for options in the Branch select box */
+        }
+    </style>
+    <script>
+        function validateForm() {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+            const message = document.getElementById("message");
+
+            const regex = /^(?=.[a-zA-Z])(?=.[0-9])(?=.[!@#$%^&])/;
+
+            if (!regex.test(password)) {
+                message.textContent = "Password must contain at least one letter, one number, and one special character.";
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                message.textContent = "Passwords do not match.";
+                return false;
+            }
+
+            message.textContent = "";
+            return true;
+        }
+
+        function redirectToLogin(event) {
+            if (!validateForm()) {
+                event.preventDefault();
+            } else {
+                event.preventDefault();
+                window.location.href = "login.html";
+            }
+        }
+
+        // Generate the years dynamically
+        function generateYears() {
+            const currentYear = new Date().getFullYear();
+            const select = document.getElementById("year");
+            for (let i = currentYear; i <= currentYear + 5; i++) {
+                const option = document.createElement("option");
+                option.value = i;
+                option.textContent = i;
+                select.appendChild(option);
+            }
+        }
+
+        window.onload = generateYears;  // Generate years when the page loads
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <form onsubmit="redirectToLogin(event)" method="post">
+            <h1>Register</h1>
+
+            <div class="input-box">
+                <input type="text" placeholder="Full Name" required>
+                <i class='bx bxs-user'></i>
+            </div>
+
+            <div class="year-branch-container">
+                <div class="input-box">
+                    <select id="year" required>
+                        <option value="" disabled selected style="color: black;">Graduation Year</option>
+                    </select>
+                    <i class='bx bxs-calendar'></i>
+                </div>
+
+                <div class="input-box">
+                    <select required>
+                        <option value="" disabled selected id="branch">Branch</option>
+                        <option value="CSE" style="color: black;">CSE</option>
+                        <option value="EEE" style="color: black;">EEE</option>
+                        <option value="Civil" style="color: black;">Civil</option>
+                        <option value="ECE" style="color: black;">ECE </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <input type="email" placeholder="Email" required>
+                <i class='bx bxs-envelope'></i>
+            </div>
+
+            <div class="input-box">
+                <input type="password" id="password" placeholder="Password" required>
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+
+            <div class="input-box">
+                <input type="password" id="confirm-password" placeholder="Retype Password" required>
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+
+            <div id="message"></div>
+
+            <div class="remember-forget">
+                <label><input type="checkbox"> Remember me</label>
+            </div>
+
+            <button type="submit" class="btn">Register</button>
+
+            <div class="register-link">
+                <p>Already have an account? <br>
+                <a href="login.html">Login</a></p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

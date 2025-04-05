@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alumni Association - Notifications</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0a0a0a;
+  color: #ffffff;
+}
+
+.navbar,
+.sidebar,
+.card,
+.footer {
+  background: rgba(30, 30, 46, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 230, 230, 0.1);
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: #00e6e6;
+  font-weight: bold;
+  text-shadow: 0 0 10px #00e6e6;
+}
+
+.menu a {
+  margin: 0 1rem;
+  color: #00e6e6;
+}
+
+.menu a.active {
+  font-weight: bold;
+  text-shadow: 0 0 8px #00e6e6;
+}
+
+.sidebar {
+  width: 250px;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sidebar .profile img {
+  width: 100px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00e6e6;
+}
+
+.card {
+  padding: 2rem;
+  margin: 2rem;
+  border-radius: 15px;
+}
+
+.notification-list {
+  list-style: none;
+  padding: 0;
+}
+
+.notification-list li {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid #00e6e6;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 230, 230, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">Alumni Association</div>
+    <div class="menu-toggle" id="menu-toggle">
+      <i class='bx bx-menu'></i>
+    </div>
+    <nav class="menu" id="menu">
+      <a href="index.html">Home</a>
+      <a href="profile.html">Profile</a>
+      <a href="messages.html">Messages</a>
+      <a href="notifications.html" class="active">Notifications</a>
+      <a href="settings.html">Settings</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <aside class="sidebar">
+      <div class="profile">
+        <img src="john.jpeg" alt="Profile Picture" />
+        <h3>John</h3>
+        <p>Class of 2027</p>
+      </div>
+      <nav class="menu">
+        <a href="registration.html"><i class='bx bxs-user-plus'></i> Alumni Registration</a>
+        <a href="donation.html"><i class='bx bxs-donate-heart'></i> Donation Portal</a>
+        <a href="networking.html"><i class='bx bxs-network-chart'></i> Networking Hub</a>
+        <a href="jobs.html"><i class='bx bxs-briefcase'></i> Job Portal</a>
+        <a href="directory.html"><i class='bx bxs-book-content'></i> Alumni Directory</a>
+        <a href="success.html"><i class='bx bxs-trophy'></i> Success Story Tracking</a>
+        <a href="events.html"><i class='bx bxs-calendar-event'></i> Events and Reunions</a>
+        <a href="feedback.html"><i class='bx bxs-chat'></i> Feedback and Surveys</a>
+      </nav>
+    </aside>
+
+    <section class="main-section">
+      <article class="card">
+        <h2>Your Notifications</h2>
+        <p>This is your notifications page. You can view recent updates, messages, and other important information here.</p>
+        <ul class="notification-list">
+          <li><i class='bx bxs-bell-ring'></i> You received a message from Jane Doe.</li>
+          <li><i class='bx bxs-calendar-event'></i> New Alumni Meet scheduled for June 2025.</li>
+          <li><i class='bx bxs-user-check'></i> Your profile was viewed by 5 members.</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 Alumni Association. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+      document.getElementById('menu').classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

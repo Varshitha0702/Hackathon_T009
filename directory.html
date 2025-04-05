@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Association - Alumni Directory</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #121212, #1e1e2e);
+            color: #e0f7fa;
+        }
+
+        a {
+            color: #00e6e6;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            color: #00ffff;
+        }
+
+        .navbar {
+            background: rgba(18, 18, 18, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #00e6e6;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00e6e6;
+        }
+
+        .menu a {
+            margin-left: 20px;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            color: #00e6e6;
+            cursor: pointer;
+        }
+
+        .main-content {
+            display: flex;
+        }
+
+        .sidebar {
+            background: rgba(18, 18, 18, 0.6);
+            backdrop-filter: blur(12px);
+            padding: 20px;
+            width: 250px;
+            min-height: calc(100vh - 70px);
+            border-right: 1px solid #00e6e6;
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #00e6e6;
+            margin-bottom: 10px;
+        }
+
+        .profile h3 {
+            color: #00e6e6;
+        }
+
+        .profile p {
+            color: #aaa;
+        }
+
+        .sidebar .menu a {
+            display: block;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+        }
+
+        .sidebar .menu a.active,
+        .sidebar .menu a:hover {
+            background: rgba(0, 230, 230, 0.1);
+            color: #00ffff;
+        }
+
+        .main-section {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .card {
+            background: rgba(30, 30, 46, 0.7);
+            backdrop-filter: blur(12px);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #00e6e6;
+            box-shadow: 0 0 20px rgba(0, 230, 230, 0.2);
+        }
+
+        .card h2 {
+            color: #00e6e6;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #cde;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            border-top: 1px solid #00e6e6;
+            background: rgba(18, 18, 18, 0.7);
+            backdrop-filter: blur(10px);
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background: rgba(18, 18, 18, 0.95);
+                width: 100%;
+                padding: 15px;
+                border-top: 1px solid #00e6e6;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .main-content {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #00e6e6;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">Alumni Association</div>
+        <div class="menu-toggle" id="menu-toggle">
+            <i class='bx bx-menu'></i>
+        </div>
+        <nav class="menu" id="menu">
+            <a href="index.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="messages.html">Messages</a>
+            <a href="notifications.html">Notifications</a>
+            <a href="settings.html">Settings</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <aside class="sidebar">
+            <div class="profile">
+                <img src="john.jpeg" alt="Profile Picture">
+                <h3>John</h3>
+                <p>Class of 2027</p>
+            </div>
+            <nav class="menu">
+                <a href="registration.html"><i class='bx bxs-user-plus'></i> Alumni Registration</a>
+                <a href="donation.html"><i class='bx bxs-donate-heart'></i> Donation Portal</a>
+                <a href="networking.html"><i class='bx bxs-network-chart'></i> Networking Hub</a>
+                <a href="jobs.html"><i class='bx bxs-briefcase'></i> Job Portal</a>
+                <a href="directory.html" class="active"><i class='bx bxs-book-content'></i> Alumni Directory</a>
+                <a href="success.html"><i class='bx bxs-trophy'></i> Success Story Tracking</a>
+                <a href="events.html"><i class='bx bxs-calendar-event'></i> Events and Reunions</a>
+                <a href="feedback.html"><i class='bx bxs-chat'></i> Feedback and Surveys</a>
+            </nav>
+        </aside>
+
+        <section class="main-section">
+            <article class="card">
+                <h2>Alumni Directory</h2>
+                <p>Search and connect with alumni. Use the directory to find contact information, job details, and more.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Alumni Association. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

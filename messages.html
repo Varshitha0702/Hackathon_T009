@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Association - Messages</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Global Styles */
+        body {
+            background-color: #121212; /* Dark background */
+            color: #ddd; /* Light text */
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background-color: #1e1e2e; /* Dark navbar */
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            color: #00e6e6;
+            font-weight: bold;
+        }
+
+        .navbar .menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar .menu a {
+            color: #ddd;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .navbar .menu a:hover {
+            color: #00e6e6;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2e3b4e; /* Darker sidebar */
+            padding: 30px 20px;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+            z-index: 500;
+            overflow-y: auto;
+        }
+
+        .sidebar .profile {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .sidebar .profile h3 {
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .sidebar .profile p {
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        .sidebar .menu a {
+            color: #bbb;
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .sidebar .menu a:hover {
+            background-color: #34495e;
+            color: #00e6e6;
+        }
+
+        .sidebar .menu a.active {
+            background-color: #00e6e6;
+            color: white;
+        }
+
+        .main-content {
+            margin-left: 270px;
+            padding: 80px 40px 40px 40px;
+            width: calc(100% - 270px);
+            background-color: #1e1e2e;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .main-section {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 230, 230, 0.5);
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .card h2 {
+            font-size: 2rem;
+            color: #00e6e6;
+            margin-bottom: 10px;
+        }
+
+        .messaging-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .conversation-list {
+            flex: 1;
+            background-color: #2e3b4e;
+            padding: 20px;
+            border-radius: 8px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .conversation {
+            display: flex;
+            padding: 15px;
+            background-color: #34495e;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .conversation.active {
+            background-color: #00e6e6;
+            color: #121212;
+        }
+
+        .conversation img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .conversation-info h4 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .conversation-info p {
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        .chat-window {
+            flex: 2;
+            background-color: #1e1e2e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .chat-header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .chat-header h4 {
+            margin: 0;
+            color: #fff;
+        }
+
+        .chat-messages {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 12px;
+        }
+
+        .message.received {
+            background-color: #34495e;
+            color: #fff;
+        }
+
+        .message.sent {
+            background-color: #00e6e6;
+            color: #121212;
+            align-self: flex-end;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid #00e6e6;
+            background-color: #2e3b4e;
+            color: #fff;
+        }
+
+        .chat-input button {
+            padding: 10px;
+            background-color: #00e6e6;
+            color: #121212;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .chat-input button:hover {
+            background-color: #00b8b8;
+        }
+
+        .footer {
+            background-color: #2e3b4e;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">Alumni Association</div>
+        <div class="menu-toggle" id="menu-toggle">
+            <i class='bx bx-menu'></i>
+        </div>
+        <nav class="menu" id="menu">
+            <a href="index.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="messages.html" class="active">Messages</a>
+            <a href="notifications.html">Notifications</a>
+            <a href="settings.html">Settings</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <aside class="sidebar">
+            <div class="profile">
+                <img src="john.jpeg" alt="Profile Picture">
+                <h3>John</h3>
+                <p>Class of 2027</p>
+            </div>
+            <nav class="menu">
+                <a href="registration.html"><i class='bx bxs-user-plus'></i> Alumni Registration</a>
+                <a href="donation.html"><i class='bx bxs-donate-heart'></i> Donation Portal</a>
+                <a href="networking.html"><i class='bx bxs-network-chart'></i> Networking Hub</a>
+                <a href="jobs.html"><i class='bx bxs-briefcase'></i> Job Portal</a>
+                <a href="directory.html"><i class='bx bxs-book-content'></i> Alumni Directory</a>
+                <a href="success.html"><i class='bx bxs-trophy'></i> Success Story Tracking</a>
+                <a href="events.html"><i class='bx bxs-calendar-event'></i> Events and Reunions</a>
+                <a href="feedback.html"><i class='bx bxs-chat'></i> Feedback and Surveys</a>
+            </nav>
+        </aside>
+
+        <section class="main-section">
+            <article class="card">
+                <h2>Your Messages</h2>
+                <p>This is your messages page. Here you can view, send, and receive messages from other alumni.</p>
+            </article>
+
+            <!-- Messaging Section -->
+            <div class="messaging-container">
+                <div class="conversation-list">
+                    <div class="conversation active">
+                        <img src="https://via.placeholder.com/50" alt="User 1">
+                        <div class="conversation-info">
+                            <h4>Jane Doe</h4>
+                            <p>Hey, are you attending the Alumni Meet?</p>
+                        </div>
+                    </div>
+                    <div class="conversation">
+                        <img src="https://via.placeholder.com/50" alt="User 2">
+                        <div class="conversation-info">
+                            <h4>John Smith</h4>
+                            <p>Let's catch up soon!</p>
+                        </div>
+                    </div>
+                    <div class="conversation">
+                        <img src="https://via.placeholder.com/50" alt="User 3">
+                        <div class="conversation-info">
+                            <h4>Alice Brown</h4>
+                            <p>Looking forward to the next reunion.</p>
+                        </div>
+                    </div>
+                    <!-- Add more conversations as needed -->
+                </div>
+
+                <div class="chat-window">
+                    <div class="chat-header">
+                        <img src="https://via.placeholder.com/50" alt="Chat User">
+                        <h4>Jane Doe</h4>
+                    </div>
+                    <div class="chat-messages">
+                        <div class="message received">
+                            <p>Hey, are you attending the Alumni Meet?</p>
+                        </div>
+                        <div class="message sent">
+                            <p>Yes, I am! Are you?</p>
+                        </div>
+                        <div class="message received">
+                            <p>Definitely! Looking forward to catching up.</p>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="Type a message...">
+                        <button type="button"><i class='bx bx-send'></i></button>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Messaging Section -->
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Alumni Association. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

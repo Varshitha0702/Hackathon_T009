@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Association - Feedback and Surveys</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Reset and Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #121212, #1e1e2e);
+    color: #e0f7fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: #00e6e6;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #00ffff;
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(18, 18, 18, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #00e6e6;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #00e6e6;
+}
+
+.navbar .menu a {
+    margin-left: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+    background: rgba(18, 18, 18, 0.7);
+    backdrop-filter: blur(12px);
+    padding: 20px;
+    width: 250px;
+    min-height: calc(100vh - 70px);
+    border-right: 1px solid #00e6e6;
+    position: fixed;
+    top: 70px;
+    left: 0;
+}
+
+.sidebar .profile {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar .profile img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #00e6e6;
+    margin-bottom: 10px;
+}
+
+.sidebar .profile h3 {
+    color: #00e6e6;
+}
+
+.sidebar .menu a {
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.sidebar .menu a.active,
+.sidebar .menu a:hover {
+    background: rgba(0, 230, 230, 0.1);
+    color: #00ffff;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 250px;
+    padding: 30px;
+    flex: 1;
+}
+
+.main-section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.card {
+    background: rgba(30, 30, 46, 0.7);
+    backdrop-filter: blur(12px);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #00e6e6;
+    box-shadow: 0 0 20px rgba(0, 230, 230, 0.2);
+}
+
+.card h2 {
+    color: #00e6e6;
+    margin-bottom: 15px;
+}
+
+.card form {
+    display: flex;
+    flex-direction: column;
+}
+
+.card label {
+    margin-top: 15px;
+    color: #e0f7fa;
+}
+
+.card input,
+.card textarea {
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 6px;
+    background: #1e1e2e;
+    border: 1px solid #00e6e6;
+    color: #fff;
+}
+
+.card button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background: #00e6e6;
+    color: #121212;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card button:hover {
+    background: #00ffff;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 15px;
+    border-top: 1px solid #00e6e6;
+    background: rgba(18, 18, 18, 0.7);
+    backdrop-filter: blur(10px);
+    color: #999;
+    margin-top: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        position: static;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #00e6e6;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .navbar .menu {
+        display: none;
+    }
+
+    .navbar .menu.active {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">Alumni Association</div>
+        <div class="menu-toggle" id="menu-toggle">
+            <i class='bx bx-menu'></i>
+        </div>
+        <nav class="menu" id="menu">
+            <a href="index.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="messages.html">Messages</a>
+            <a href="notifications.html">Notifications</a>
+            <a href="settings.html">Settings</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <aside class="sidebar">
+            <div class="profile">
+                <img src="john.jpeg" alt="Profile Picture">
+                <h3>John</h3>
+                <p>Class of 2027</p>
+            </div>
+            <nav class="menu">
+                <a href="registration.html"><i class='bx bxs-user-plus'></i> Alumni Registration</a>
+                <a href="donation.html"><i class='bx bxs-donate-heart'></i> Donation Portal</a>
+                <a href="networking.html"><i class='bx bxs-network-chart'></i> Networking Hub</a>
+                <a href="jobs.html"><i class='bx bxs-briefcase'></i> Job Portal</a>
+                <a href="directory.html"><i class='bx bxs-book-content'></i> Alumni Directory</a>
+                <a href="success.html"><i class='bx bxs-trophy'></i> Success Story Tracking</a>
+                <a href="events.html"><i class='bx bxs-calendar-event'></i> Events and Reunions</a>
+                <a href="feedback.html" class="active"><i class='bx bxs-chat'></i> Feedback and Surveys</a>
+            </nav>
+        </aside>
+
+        <section class="main-section">
+            <article class="card">
+                <h2>Feedback and Surveys</h2>
+                <p>Your feedback helps us improve. Participate in surveys and share your thoughts with us.</p>
+                <!-- Feedback form -->
+                <form>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="feedback">Your Feedback:</label>
+                    <textarea id="feedback" name="feedback" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </article>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Alumni Association. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Association - Welcome</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e1e2e, #121212);
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .wrapper {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 0 15px rgba(0, 230, 230, 0.5);
+        }
+        h1 {
+            color: #00e6e6;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .landing-buttons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #00e6e6;
+            color: #121212;
+            padding: 12px 24px;
+            margin: 10px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 230, 230, 0.5);
+        }
+        .landing-buttons a:hover {
+            background: #009999;
+            transform: scale(1.1);
+        }
+        .bx {
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Welcome to the Alumni Association</h1>
+        <p>Connect, share, and grow with your fellow alumni from our prestigious University/Institute.</p>
+        <div class="landing-buttons">
+            <a href="login.html">
+                <i class='bx bxs-log-in-circle'></i> Login
+            </a>
+            <a href="register.html">
+                <i class='bx bxs-user-plus'></i> Register
+            </a>
+        </div>
+    </div>
+</body>
+</html>

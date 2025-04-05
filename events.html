@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Association - Events and Reunions</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #121212, #1e1e2e);
+            color: #e0f7fa;
+        }
+
+        a {
+            color: #00e6e6;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            color: #00ffff;
+        }
+
+        .navbar {
+            background: rgba(18, 18, 18, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #00e6e6;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00e6e6;
+        }
+
+        .menu a {
+            margin-left: 20px;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            color: #00e6e6;
+            cursor: pointer;
+        }
+
+        .main-content {
+            display: flex;
+        }
+
+        .sidebar {
+            background: rgba(18, 18, 18, 0.6);
+            backdrop-filter: blur(12px);
+            padding: 20px;
+            width: 250px;
+            min-height: calc(100vh - 70px);
+            border-right: 1px solid #00e6e6;
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #00e6e6;
+            margin-bottom: 10px;
+        }
+
+        .profile h3 {
+            color: #00e6e6;
+        }
+
+        .profile p {
+            color: #aaa;
+        }
+
+        .sidebar .menu a {
+            display: block;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+        }
+
+        .sidebar .menu a.active,
+        .sidebar .menu a:hover {
+            background: rgba(0, 230, 230, 0.1);
+            color: #00ffff;
+        }
+
+        .main-section {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .card {
+            background: rgba(30, 30, 46, 0.7);
+            backdrop-filter: blur(12px);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #00e6e6;
+            box-shadow: 0 0 20px rgba(0, 230, 230, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .card h2 {
+            color: #00e6e6;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #cde;
+            line-height: 1.6;
+        }
+
+        .events {
+            display: grid;
+            gap: 20px;
+        }
+
+        .event-card {
+            background: rgba(35, 35, 50, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #00e6e6;
+            box-shadow: 0 0 15px rgba(0, 230, 230, 0.1);
+        }
+
+        .event-card h3 {
+            color: #00e6e6;
+            margin-bottom: 10px;
+        }
+
+        .event-date {
+            color: #80d8ff;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .short-text {
+            color: #cde;
+        }
+
+        .full-text {
+            display: none;
+            margin-top: 10px;
+            color: #cde;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 10px;
+            color: #00ffff;
+            cursor: pointer;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            border-top: 1px solid #00e6e6;
+            background: rgba(18, 18, 18, 0.7);
+            backdrop-filter: blur(10px);
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background: rgba(18, 18, 18, 0.95);
+                width: 100%;
+                padding: 15px;
+                border-top: 1px solid #00e6e6;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .main-content {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #00e6e6;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">Alumni Association</div>
+        <div class="menu-toggle" id="menu-toggle">
+            <i class='bx bx-menu'></i>
+        </div>
+        <nav class="menu" id="menu">
+            <a href="index.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="messages.html">Messages</a>
+            <a href="notifications.html">Notifications</a>
+            <a href="settings.html">Settings</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <aside class="sidebar">
+            <div class="profile">
+                <img src="john.jpeg" alt="Profile Picture">
+                <h3>John</h3>
+                <p>Class of 2027</p>
+            </div>
+            <nav class="menu">
+                <a href="registration.html"><i class='bx bxs-user-plus'></i> Alumni Registration</a>
+                <a href="donation.html"><i class='bx bxs-donate-heart'></i> Donation Portal</a>
+                <a href="networking.html"><i class='bx bxs-network-chart'></i> Networking Hub</a>
+                <a href="jobs.html"><i class='bx bxs-briefcase'></i> Job Portal</a>
+                <a href="directory.html"><i class='bx bxs-book-content'></i> Alumni Directory</a>
+                <a href="success.html"><i class='bx bxs-trophy'></i> Success Story Tracking</a>
+                <a href="events.html" class="active"><i class='bx bxs-calendar-event'></i> Events and Reunions</a>
+                <a href="feedback.html"><i class='bx bxs-chat'></i> Feedback and Surveys</a>
+            </nav>
+        </aside>
+
+        <section class="main-section">
+            <article class="card">
+                <h2>Events and Reunions</h2>
+                <p>Stay informed about upcoming events and reunions. Don't miss the chance to reconnect with your classmates.</p>
+            </article>
+
+            <section class="events">
+                <!-- Event Cards (unchanged structure, themed styling) -->
+                <div class="event-card">
+                    <h3>Alumni Meet 2024</h3>
+                    <p class="event-date">Date: January 15, 2024</p>
+                    <div class="event-description">
+                        <p class="short-text">Join us for the Alumni Meet 2024, where alumni from all batches will come together to reconnect, reminisce, and celebrate...</p>
+                        <p class="full-text">Join us for the Alumni Meet 2024, where alumni from all batches will come together to reconnect, reminisce, and celebrate the achievements of our esteemed alumni community. The event will feature keynote speeches, networking sessions, and a gala dinner.</p>
+                        <a href="#" class="read-more">Read more</a>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <h3>Annual Tech Conference</h3>
+                    <p class="event-date">Date: March 22, 2024</p>
+                    <div class="event-description">
+                        <p class="short-text">The Annual Tech Conference 2024 will bring together industry leaders and alumni to discuss the latest trends in technology...</p>
+                        <p class="full-text">The Annual Tech Conference 2024 will bring together industry leaders and alumni to discuss the latest trends in technology, innovation, and entrepreneurship. Attendees will have the opportunity to participate in workshops, panel discussions, and networking events.</p>
+                        <a href="#" class="read-more">Read more</a>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <h3>Class of 2015 Reunion</h3>
+                    <p class="event-date">Date: May 18, 2024</p>
+                    <div class="event-description">
+                        <p class="short-text">The Class of 2015 is celebrating its 9-year reunion with a special event on campus. Reconnect with old friends and faculty...</p>
+                        <p class="full-text">The Class of 2015 is celebrating its 9-year reunion with a special event on campus. Reconnect with old friends and faculty, share your journey since graduation, and enjoy a nostalgic walk down memory lane with a campus tour and a lunch gathering.</p>
+                        <a href="#" class="read-more">Read more</a>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <h3>Entrepreneurship Workshop</h3>
+                    <p class="event-date">Date: July 10, 2024</p>
+                    <div class="event-description">
+                        <p class="short-text">Aspiring entrepreneurs are invited to join the Entrepreneurship Workshop to gain insights from successful alumni...</p>
+                        <p class="full-text">Aspiring entrepreneurs are invited to join the Entrepreneurship Workshop to gain insights from successful alumni who have built thriving businesses. The workshop will cover topics such as startup funding, business planning, and scaling your business.</p>
+                        <a href="#" class="read-more">Read more</a>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Alumni Association. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            document.getElementById('menu').classList.toggle('active');
+        });
+
+        document.querySelectorAll('.read-more').forEach(function (button) {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+                const fullText = this.previousElementSibling;
+                fullText.style.display = 'inline';
+                this.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
